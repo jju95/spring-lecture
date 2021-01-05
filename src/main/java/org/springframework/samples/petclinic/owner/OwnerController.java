@@ -82,6 +82,8 @@ class OwnerController {
 	@GetMapping("/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
 
+		
+		// git hub
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getFirstName() == null) {
 			owner.setFirstName(""); // empty string signifies broadest possible search
