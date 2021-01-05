@@ -42,23 +42,24 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 * @return a Collection of matching {@link Owner}s (or an empty Collection if none
 	 * found)
 	 */
-	@Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :lastName%")
+	@Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :firstName%")
 	@Transactional(readOnly = true)
-	Collection<Owner> findByLastName(@Param("lastName") String lastName);
+	Collection<Owner> findByFirstName(@Param("firstName") String firstName);
 
 	/**
 	 * Retrieve an {@link Owner} from the data store by id.
 	 * @param id the id to search for
 	 * @return the {@link Owner} if found
 	 */
-	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
+	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id like :id")
 	@Transactional(readOnly = true)
 	Owner findById(@Param("id") Integer id);
 
 	/**
-	 * Save an {@link Owner} to the data store, either inserting or updating it.
+	 * Save an {@link Owner} to the data store, ither insertineg or updating it.
 	 * @param owner the {@link Owner} to save
 	 */
 	void save(Owner owner);
+	
 
 }
